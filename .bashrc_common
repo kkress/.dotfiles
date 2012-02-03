@@ -1,0 +1,11 @@
+#Common accross all hosts
+
+# colors for ls, etc.
+#eval `dircolors -b /etc/DIR_COLORS`
+alias d="ls --color"
+alias ls="ls --color=auto"
+alias ll="ls --color -l"
+
+PATH=${PATH}:/sbin:/usr/sbin:$HOME/bin:/usr/local/bin
+
+#PS1="\[\033[1;36m\]\u@\h: \[\033[0m\]\A \w>"
