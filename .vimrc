@@ -38,6 +38,7 @@ augroup END
 
 "For all 'normal' code files use this stuff
 autocmd FileType ant,c,cpp,java,perl,xml,xslt,python,xhtml,css,javascript,html,lua,sql set shiftwidth=3 softtabstop=3 smarttab shiftround expandtab autoindent smartindent textwidth=80 ruler noic
+autocmd FileType scala,sbt set shiftwidth=2 softtabstop=2 smarttab shiftround expandtab autoindent smartindent textwidth=80 ruler noic
 
 "For make files keep tabs etc
 autocmd FileType make set noexpandtab shiftwidth=8 nosmarttab softtabstop=0
