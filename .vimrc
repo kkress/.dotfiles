@@ -44,7 +44,7 @@ autocmd FileType ant,c,cpp,java,perl,xml,xslt,python,xhtml,css,javascript,html,l
 "Scala style dictates 2 spaces instead of 3
 autocmd FileType scala,sbt set shiftwidth=2 softtabstop=2 smarttab shiftround expandtab autoindent smartindent textwidth=80 ruler noic
 "Go style dictates tabs at shiftwidth 2
-autocmd FileType go set noexpandtab tabstop=2 shiftwidth=2 softtabstop=2 smarttab shiftround expandtab autoindent smartindent textwidth=80 ruler noic
+autocmd FileType go set noexpandtab tabstop=2 shiftwidth=2 smarttab shiftround autoindent smartindent textwidth=80 ruler noic softtabstop=0
 "For make files keep tabs etc
 autocmd FileType make set noexpandtab shiftwidth=8 nosmarttab softtabstop=0
 
