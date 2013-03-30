@@ -8,4 +8,8 @@ alias ll="ls --color -l"
 
 PATH=${PATH}:/sbin:/usr/sbin:$HOME/bin:/usr/local/bin
 
+HISTFILESIZE=5000
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+shopt -s histappend
+
 #PS1="\[\033[1;36m\]\u@\h: \[\033[0m\]\A \w>"

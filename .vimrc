@@ -4,6 +4,9 @@ syntax on
 "incremental search
 set incsearch
 
+"Enable or disable 'paste' mode with F2
+set pastetoggle=<F2>
+
 "try to use the /dev/shm then . for swp files to 
 "set directory=/dev/shm,.
 
@@ -37,9 +40,11 @@ augroup filetype
 augroup END
 
 "For all 'normal' code files use this stuff
-autocmd FileType ant,c,cpp,java,perl,xml,xslt,python,xhtml,css,javascript,html,lua,sql set shiftwidth=3 softtabstop=3 smarttab shiftround expandtab autoindent smartindent textwidth=80 ruler noic
+autocmd FileType ant,c,cpp,java,perl,xml,xslt,python,xhtml,css,javascript,html,lua,sql set tabstop=3 shiftwidth=3 softtabstop=3 smarttab shiftround expandtab autoindent smartindent textwidth=80 ruler noic
+"Scala style dictates 2 spaces instead of 3
 autocmd FileType scala,sbt set shiftwidth=2 softtabstop=2 smarttab shiftround expandtab autoindent smartindent textwidth=80 ruler noic
-
+"Go style dictates tabs at shiftwidth 2
+autocmd FileType go set noexpandtab tabstop=2 shiftwidth=2 softtabstop=2 smarttab shiftround expandtab autoindent smartindent textwidth=80 ruler noic
 "For make files keep tabs etc
 autocmd FileType make set noexpandtab shiftwidth=8 nosmarttab softtabstop=0
 
@@ -64,13 +69,11 @@ let java_highlight_functions=1
 let c_space_errors = 1
 
 "Highlight lines over 80 chars
-autocmd FileType ant,c,cpp,java,perl highlight OverLength ctermbg=red ctermfg=white guibg=#ffbfbf
-autocmd FileType ant,c,cpp,java,perl match OverLength /\%81v.*/
-autocmd FileType ant,c,cpp,java,perl,makefile set listchars=tab:>-
-autocmd FileType ant,c,cpp,java,perl,makefile set list!
+autocmd FileType ant,c,cpp,java,perl,python,scala,go highlight OverLength ctermbg=red ctermfg=white guibg=#ffbfbf
+autocmd FileType ant,c,cpp,java,perl,python,scala,go match OverLength /\%81v.*/
+autocmd FileType ant,c,cpp,java,perl,python,scala set listchars=tab:>-
+autocmd FileType ant,c,cpp,java,perl,python,scala set list!
 
-"Scala style dictates 2 spaces instead of 3
-autocmd FileType scala set shiftwidth=2 softtabstop=2
 
 
 "set tags=./tags,tags
@@ -83,13 +86,8 @@ set hlsearch
 set formatoptions=croql
 set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 
-
-" http://vim.wikia.com/wiki/Automatically_set_screen_title
-let &titlestring = hostname() . " vim:" . expand("%:p") 
-if &term == "screen"
-  set t_ts=k  "note ^[ is <ctrl>+V ESC
-  set t_fs=\
-endif
-if &term == "screen" || &term == "xterm"
-  set title
+" Check for .vim.custom in the directory containing the newly opened file
+let custom_config_file = expand('%:p:h') . '~/.vimrc_local'
+if filereadable(custom_config_file)
+   exe 'source' custom_config_file
 endif
