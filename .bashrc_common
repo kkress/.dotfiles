@@ -6,7 +6,7 @@ alias d="ls --color"
 alias ls="ls --color=auto"
 alias ll="ls --color -l"
 
-PATH=${PATH}:/sbin:/usr/sbin:$HOME/bin:/usr/local/bin
+PATH=${PATH}:/sbin:/usr/sbin:$HOME/bin:/usr/local/bin:/home/kkress/.cargo/bin
 
 HISTFILESIZE=5000
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
