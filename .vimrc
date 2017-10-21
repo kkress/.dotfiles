@@ -64,9 +64,8 @@ augroup END
 autocmd FileType ant,c,cpp,java,perl,xml,xslt,python,xhtml,css,javascript,html,lua,sql set tabstop=3 shiftwidth=3 softtabstop=3 smarttab shiftround expandtab autoindent smartindent textwidth=80 ruler noic
 "Scala style dictates 2 spaces instead of 3
 autocmd FileType scala,sbt set shiftwidth=2 softtabstop=2 smarttab shiftround expandtab autoindent smartindent textwidth=80 ruler noic
-"Go style dictates tabs at shiftwidth 2
-autocmd FileType go set noexpandtab tabstop=2 shiftwidth=2 smarttab shiftround autoindent smartindent textwidth=80 ruler noic softtabstop=0
 "For make files keep tabs etc
+autocmd FileType go set noexpandtab tabstop=2 shiftwidth=2 nosmarttab softtabstop=0
 autocmd FileType make set noexpandtab shiftwidth=8 nosmarttab softtabstop=0
 
 "Disable fold column
@@ -106,6 +105,35 @@ set hlsearch
 " Still needed?
 set formatoptions=croql
 set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+
+" http://vim.wikia.com/wiki/Automatically_set_screen_title
+let &titlestring = hostname() . " vim:" . expand("%:p") 
+if &term == "screen"
+  set t_ts=k  "note ^[ is <ctrl>+V ESC
+  set t_fs=\
+endif
+"if &term == "screen" || &term == "xterm"
+"  set title
+"endif
+"hilight 80 chars
+set colorcolumn=+1,+2,+3
+
+"http://got-ravings.blogspot.com/2008/08/vim-pr0n-making-statuslines-that-own.html
+set statusline=%t       "tail of the filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=col:%c      "cursor column
+set statusline+=\ ln:%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+set laststatus=2
+
+"http://vim.wikia.com/wiki/Automatically_set_screen_title
+let &titlestring=expand("%:m") . " " . expand("%:p:h")
 
 " Check for .vim.custom in the directory containing the newly opened file
 let custom_config_file = expand('%:p:h') . '~/.vimrc_local'
